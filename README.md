@@ -1,6 +1,6 @@
 # Supply Chain Lead Time & SLA Analysis
 
-**Executive Summary**
+### **Executive Summary**
 An end-to-end evaluation of **180,519 enterprise supply chain records** (DataCo Global dataset), filtered to focus on **3 core regional fulfillment hubs**, to analyze vendor STPO lead times, carrier SLA compliance, and dock dispatch bottlenecks.
 ---
 
