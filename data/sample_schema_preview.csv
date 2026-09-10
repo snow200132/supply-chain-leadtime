@@ -1,0 +1,8 @@
+stpo_id,vendor_id,order_date,fulfillment_hub,cico_delay_hrs,total_lead_time_days,carrier_sla_status
+STPO-801,VEND-A,2026-08-01,Hub-Lagos,1.5,3.2,Met
+STPO-802,VEND-A,2026-08-02,Hub-Lagos,1.2,2.8,Met
+STPO-803,VEND-B,2026-08-02,Hub-Kano,8.5,7.4,Breached
+STPO-804,VEND-B,2026-08-03,Hub-Kano,9.1,7.8,Breached
+STPO-805,VEND-C,2026-08-04,Hub-PortHarcourt,2.1,3.5,Met
+STPO-806,VEND-B,2026-08-05,Hub-Kano,10.2,8.1,Breached
+STPO-807,VEND-A,2026-08-06,Hub-Lagos,1.1,2.9,Met
