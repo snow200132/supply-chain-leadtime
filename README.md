@@ -12,6 +12,13 @@ An end-to-end evaluation of vendor Stock Transfer Purchase Order (STPO) lead tim
 
 ---
 
+### Data Architecture & Repository Files
+* **`data/stpo_leadtime_data.csv`**: Enterprise shipment logs covering STPO orders across regional fulfillment hubs (Lagos, Kano, Port Harcourt).
+* **`scripts/01_leadtime_sla_queries.sql`**: Production PostgreSQL scripts calculating order timestamp deltas, vendor lead-time variances, and CICO delay classifications.
+* **`visualisations/`**: Exported Tableau fulfillment pipeline dashboards and route heatmaps.
+
+---
+
 ### Key Business Insights & Impact
 * **Bottleneck Isolation:** Identified customer site Check-In/Check-Out (CICO) delays as the primary driver of **79%** of turnaround spikes in bulk shipments.
 * **Vendor Variance:** Uncovered a 4.2-day lead-time variance between top-performing and low-performing vendor fulfillment hubs.
