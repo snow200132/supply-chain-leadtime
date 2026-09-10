@@ -1,0 +1,27 @@
+-- STPO Lead Time & Vendor SLA Compliance Queries
+-- Author: Inioluwa Idowu
+
+-- 1. Vendor Lead Time Variance & SLA Breach Rate Across Fulfillment Hubs
+SELECT 
+    vendor_id,
+    fulfillment_hub,
+    COUNT(stpo_id) AS total_orders,
+    ROUND(AVG(total_lead_time_days)::numeric, 2) AS avg_lead_time_days,
+    ROUND(AVG(cico_delay_hrs)::numeric, 2) AS avg_cico_delay_hrs,
+    SUM(CASE WHEN carrier_sla_status = 'Breached' THEN 1 ELSE 0 END) AS sla_breaches,
+    ROUND((SUM(CASE WHEN carrier_sla_status = 'Breached' THEN 1 ELSE 0 END)::NUMERIC / COUNT(stpo_id)) * 100, 2) AS breach_rate_pct
+FROM stpo_leadtime_data
+GROUP BY vendor_id, fulfillment_hub
+ORDER BY avg_lead_time_days DESC;
+
+-- 2. Isolating CICO Dock Delays driving Lead Time Spikes
+SELECT 
+    CASE 
+        WHEN cico_delay_hrs > 5.0 THEN 'Excessive Dock Delay (>5 hrs)'
+        ELSE 'Standard Dock Turnaround (<5 hrs)'
+    END AS delay_category,
+    COUNT(stpo_id) AS shipment_count,
+    ROUND((COUNT(stpo_id)::NUMERIC / (SELECT COUNT(*) FROM stpo_leadtime_data)) * 100, 2) AS pct_of_total_spikes,
+    ROUND(AVG(total_lead_time_days)::numeric, 2) AS impact_on_lead_time
+FROM stpo_leadtime_data
+GROUP BY 1;
